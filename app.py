@@ -5,8 +5,8 @@ import math
 import altair as alt
 
 
-st.title('Projet oiseaux :bird: de :blue[Marseille] :sunglasses:')
-st.text("Léa COQUEREAU\nGuillaume VALENTIN\nAndreas JULIEN-CARAGUEL\n")
+st.title('Projet :clapper: :red[CineStat] :clapper:')
+st.text("Lise AYMONIN\nAndreas JULIEN-CARAGUEL\n")
 st.header("Problématique", divider="gray")
-st.link_button("Source de la donnée", "https://www.data.gouv.fr/fr/datasets/marseille-biodiversite-oiseaux/")
-st.text("Comment les différentes espèces d'oiseaux de Marseille sont-elles réparti dans la ville ?")
+st.link_button("Source de la donnée", "https://www.data.gouv.fr/datasets/frequentation-des-salles-de-cinema/")
+st.text("A quoi ressemblera la courbe des entrées pour les mois, années à venir ?\nQuelles sont les semaines et les mois de plus forte affluence dans l’année ?")
