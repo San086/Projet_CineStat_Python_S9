@@ -1,8 +1,5 @@
+streamlit
 pandas
 numpy
-matplotlib.pyplot
-seaborn
-math
-streamlit
-altair 
+altair
 openpyxl
