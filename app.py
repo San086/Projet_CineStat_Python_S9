@@ -12,7 +12,7 @@ st.link_button("Source de la donnée", "https://www.data.gouv.fr/datasets/freque
 st.text("A quoi ressemblera la courbe des entrées pour les mois, années à venir ?\nQuelles sont les semaines et les mois de plus forte affluence dans l’année ?")
 
 
-fichier = '/content/Mise_en_forme_Frequentation_Salles_Cine.xlsx' #Collez votre chemin d'accès ici
+fichier = '/content/Mise_en_forme_Frequentation_Salles_Cine.xlsx' 
 data = pd.read_excel(fichier, sheet_name ='Entrees_mois')
 
 
