@@ -81,7 +81,6 @@ splitDate = st.date_input(
     "Entrer une date à partir de laquelle vérifier le modèle :",
     value = pd.to_datetime("2017-01-01")
 )
-st.button("Recalculer")
 xtrain = x[df_long["date"] < splitDate]
 ytrain = y[df_long["date"] < splitDate]
 xtest = x[df_long["date"] >= splitDate]
