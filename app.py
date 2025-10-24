@@ -77,9 +77,9 @@ x = df_long[col]
 y = df_long["entrees"]
 
 # --- Séparation train/test ---
-splitDate = st.date_input(
+splitDate = st.input(
     "Entrer une date à partir de laquelle vérifier le modèle :",
-    value = datetime.date(2017,01,01)
+    value = "2017,01,01"
 )
 splitDate = pd.to_datetime(splitDate)
 xtrain = x[df_long["date"] < splitDate]
