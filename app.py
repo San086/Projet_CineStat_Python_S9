@@ -31,7 +31,7 @@ df
 
 
 # --- Titre ---
-st.title("🎬 Projet CineStat — Prévision du nombre d’entrées cinéma")
+st.title("🎬 Prévision du nombre d’entrées cinéma", divider=True)
 
 # --- Chargement du fichier Excel ---
 fichier = 'Mise_en_forme_Frequentation_Salles_Cine.xlsx'
@@ -119,7 +119,7 @@ st.write(
 
 
 # --- Titre ---
-st.title("🎬 CineStat — Projection du nombre d’entrées cinéma jusqu’en 2030")
+st.title("🎬 Projection du nombre d’entrées cinéma jusqu’en 2030", divider=True)
 
 # --- Chargement du fichier Excel ---
 fichier = 'Mise_en_forme_Frequentation_Salles_Cine.xlsx'
@@ -208,7 +208,7 @@ st.write(
 
 
 # --- Titre ---
-st.title("🎬 Analyse KNN — Classification des mois selon leur affluence moyenne")
+st.title("🎬 Analyse KNN — Classification des mois selon leur affluence moyenne", divider=True)
 
 # --- Lecture du fichier Excel ---
 fichier = "Mise_en_forme_Frequentation_Salles_Cine.xlsx"
