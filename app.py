@@ -25,7 +25,7 @@ data = pd.read_excel(fichier, sheet_name ='Entrees_mois')
 
 
 st.header("Tableau de données (brut)", divider=True)
-data.insert(0, 'ID', range(1, 1 + len(data)))
+data.insert(0, range(1, 1 + len(data)))
 df = pd.DataFrame(data)
 df
 
@@ -60,6 +60,7 @@ df_long["vacances"] = df_long["numéro mois"].isin([7, 8, 12]).astype(int)
 
 st.header("Tableau de données restructurées", divider=True)
 df_long.insert(0, range(1, 1 + len(df_long)))
+st.dataframe(df_long)
 
 # --- Création de features de décalage ---
 s1, s2, m = 3, 6, 12
