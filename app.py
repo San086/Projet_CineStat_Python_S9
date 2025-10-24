@@ -293,7 +293,6 @@ st.info(
     "en bleu : faible affluence."
 )
 
-# test
 st.header("Surprises", divider=True)
 st.link_button("Clique pour une surprise", "https://www.youtube.com/watch?v=xvFZjo5PgG0")
 st.link_button("Clique pour une surprise v2", "https://chat-jai-pete.fr/")
