@@ -3,4 +3,4 @@ pandas
 numpy
 altair
 openpyxl
-matplotlib.pyplot
+matplotlib
