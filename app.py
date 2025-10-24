@@ -174,9 +174,9 @@ st.pyplot(fig)
 # --- Texte d’analyse ---
 st.subheader("📈 Interprétation")
 st.write(
-    f"Le modèle Random Forest prédit l’évolution du nombre d’entrées cinéma jusqu’à **{futur[-1].year}**. "
+    f"Le modèle Random Forest prédit l’évolution du nombre d’entrées cinéma jusqu’en **{futur[-1].year}**. "
     "Les valeurs réelles (en bleu) et les projections (en vert) permettent d’anticiper les tendances "
-    "saisonnières et les périodes de forte affluence."
+    "saisonnières et les périodes de forte affluence. Cependant les crises majeures impactant le milieu ne sont pas prises en compte (covid, évolutions technologiques, etc)."
 )
 
 
