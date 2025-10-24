@@ -13,33 +13,39 @@ from sklearn.metrics import confusion_matrix, classification_report, accuracy_sc
 
 
 
-# --- MENU LATÉRAL ---
-st.sidebar.title("🎬 Navigation")
-menu = st.sidebar.radio(
-    "Aller à :",
-    ["Accueil", "Prévisions Random Forest", "Projection 2030", "Classification KNN"]
-)
+# --- Titre principal ---
+st.title("🎬 CineStat - Tableau de bord")
 
-# --- PAGES ---
-if menu == "Accueil":
-    st.title("🎥 CineStat - Tableau de bord")
-    st.write("Bienvenue dans l'application de prévision des entrées cinéma !")
+# --- Menu interne ---
+st.markdown("""
+### 🧭 Menu de navigation
+- [🏠 Accueil](#accueil)
+- [📈 Prévisions Random Forest](#previsions-random-forest)
+- [🗓️ Projection 2030](#projection-2030)
+- [🔎 Classification KNN](#classification-knn)
+""", unsafe_allow_html=True)
 
-elif menu == "Prévisions Random Forest":
-    st.title("📈 Modèle Random Forest")
-    st.write("Affichage des prévisions du modèle Random Forest...")
-    # 👉 ici ton code de modèle RandomForest + graphique
-    st.success("Section Random Forest chargée ✅")
+# --- Section Accueil ---
+st.markdown("## 🏠 Accueil", unsafe_allow_html=True)
+st.write("Bienvenue sur CineStat — outil d’analyse et de prévision des entrées cinéma en France.")
 
-elif menu == "Projection 2030":
-    st.title("🗓️ Prévisions futures (2030)")
-    st.write("Projection du nombre d’entrées jusqu’en 2030...")
-    # 👉 ton code de projection future
+# --- Section Prévisions Random Forest ---
+st.markdown("---")
+st.markdown("## 📈 Prévisions Random Forest", unsafe_allow_html=True)
+st.write("Affichage des résultats du modèle Random Forest ici...")
+# 👉 ton code de graphique ou modèle Random Forest
 
-elif menu == "Classification KNN":
-    st.title("🔎 Classification KNN")
-    st.write("Analyse des mois par catégorie d’affluence...")
-    # 👉 ton code KNN ici
+# --- Section Projection 2030 ---
+st.markdown("---")
+st.markdown("## 🗓️ Projection 2030", unsafe_allow_html=True)
+st.write("Projection des entrées jusqu’en 2030...")
+# 👉 ton code de projection future ici
+
+# --- Section Classification KNN ---
+st.markdown("---")
+st.markdown("## 🔎 Classification KNN", unsafe_allow_html=True)
+st.write("Analyse des mois selon le niveau d’affluence (KNN)...")
+# 👉 ton code KNN ici
 
 
 
