@@ -4,5 +4,4 @@ numpy
 altair
 openpyxl
 matplotlib
-RandomForestRegressor
-sklearn
+scikit-learn
