@@ -77,9 +77,7 @@ x = df_long[col]
 y = df_long["entrees"]
 
 # --- Séparation train/test ---
-splitDate = st.input("Rentrez truc",
-    value = "2017-01-01"
-)
+splitDate = "2017-01-01"
 xtrain = x[df_long["date"] < splitDate]
 ytrain = y[df_long["date"] < splitDate]
 xtest = x[df_long["date"] >= splitDate]
