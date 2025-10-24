@@ -135,7 +135,7 @@ model = RandomForestRegressor(random_state=42, n_estimators=300)
 model.fit(x, y)
 
 # --- Création du futur (2025 → 2030) ---
-endDate = "2030-12-01
+endDate = "2030-12-01"
 futur = pd.date_range(start=df_long["date"].max() + pd.offsets.MonthBegin(1), endDate, freq="MS")
 dfutur = pd.DataFrame({"date": futur})
 dfutur["Années"] = dfutur["date"].dt.year
