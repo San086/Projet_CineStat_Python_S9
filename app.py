@@ -68,7 +68,6 @@ s1, s2, m = 3, 6, 12
 df_long["lag1"] = df_long["entrees"].shift(s1)
 df_long["lag2"] = df_long["entrees"].shift(s2)
 df_long["mean3"] = df_long["entrees"].rolling(m).mean()
-
 # --- Suppression des NaN créés par les décalages ---
 df_long = df_long.dropna().reset_index(drop=True)
 
@@ -78,7 +77,11 @@ x = df_long[col]
 y = df_long["entrees"]
 
 # --- Séparation train/test ---
-splitDate = "2017-01-01"
+splitDate = st.date_input(
+    "Entrer une date à partir de laquelle vérifier le modèle :",
+    value = pd.to_datetime("2017-01-01")
+)
+st.button("Recalculer")
 xtrain = x[df_long["date"] < splitDate]
 ytrain = y[df_long["date"] < splitDate]
 xtest = x[df_long["date"] >= splitDate]
