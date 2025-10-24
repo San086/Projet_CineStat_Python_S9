@@ -58,7 +58,8 @@ df_long = df_long.sort_values("date").reset_index(drop=True)
 df_long["trimestre"] = df_long["date"].dt.quarter
 df_long["vacances"] = df_long["numéro mois"].isin([7, 8, 12]).astype(int)
 
-st.header("Tableau de données restructurées", divider=True)
+# --- Tableau restructuré pour modélisation ---
+st.header("Tableau des données restructurées")
 df_long.insert(0, 'ID', range(1, 1 + len(df_long)))
 st.dataframe(df_long)
 
@@ -91,18 +92,17 @@ ypred = model.predict(xtest)
 
 # --- Évaluation du modèle ---
 mae = mean_absolute_error(ytest, ypred)
-mape = np.mean(np.abs((ytest - ypred) / (ytest + 0.1))) * 100
-
 # --- Affichage des métriques ---
 st.subheader("📊 Évaluation du modèle Random Forest")
 st.write(f"**MAE :** {mae:,.0f} entrées")
-st.write(f"**Erreur moyenne (MAPE) :** {mape:.2f}%")
+if mae > 2000000: st.write("Erreur supérieure à 2 millions d'entrées : erreur élevée.")
+else: st.write("Erreur inférieur à 2 millions d'entrées : c'est acceptable.")
 
 # --- Graphique matplotlib ---
 fig, ax = plt.subplots(figsize=(12, 6))
 ax.plot(df_long["date"], df_long["entrees"], label="Valeurs réelles", color="blue")
 ax.plot(datesTest, ypred, label="Prédictions", color="orange", linewidth=2)
-ax.set_title("Prévision du nombre d’entrées cinéma (modèle Random Forest)")
+ax.set_title(f"Prévision du nombre d’entrées cinéma depuis {splitDate[0:3} (modèle Random Forest)")
 ax.set_xlabel("Année")
 ax.set_ylabel("Nombre d'entrées en millions")
 ax.legend()
