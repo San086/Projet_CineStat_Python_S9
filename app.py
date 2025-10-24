@@ -1,4 +1,5 @@
 import streamlit as st
+st.warning("🔄 L'app a bien été relancée.")
 import pandas as pd
 import numpy as np
 import math
