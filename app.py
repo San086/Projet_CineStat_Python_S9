@@ -77,9 +77,13 @@ x = df_long[col]
 y = df_long["entrees"]
 
 # --- Séparation train/test ---
+min_date = df_long["date"].min().to_pydatetime()
+max_date = df_long["date"].max().to_pydatetime()
 splitDate = st.date_input(
     "Entrer une date à partir de laquelle vérifier le modèle :",
-    value = pd.to_datetime("2017-01-01")
+    value = pd.to_datetime("2017-01-01"),
+    min_value=min_date, 
+    max_value=max_date
 )
 xtrain = x[df_long["date"] < splitDate]
 ytrain = y[df_long["date"] < splitDate]
