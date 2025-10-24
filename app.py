@@ -31,7 +31,7 @@ df
 
 
 # --- Titre ---
-st.header("🎬 Prévision du nombre d’entrées cinéma", divider=True)
+st.header("Prévision du nombre d’entrées cinéma", divider=True)
 
 # --- Chargement du fichier Excel ---
 fichier = 'Mise_en_forme_Frequentation_Salles_Cine.xlsx'
