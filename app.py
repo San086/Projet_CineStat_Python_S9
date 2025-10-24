@@ -1,5 +1,4 @@
 import streamlit as st
-st.warning("🔄 L'app a bien été relancée.")
 import pandas as pd
 import numpy as np
 import math
@@ -78,7 +77,7 @@ x = df_long[col]
 y = df_long["entrees"]
 
 # --- Séparation train/test ---
-splitDate = pd.to_datetime("2017-01-01")
+endDate = "2017-01-01"
 xtrain = x[df_long["date"] < splitDate]
 ytrain = y[df_long["date"] < splitDate]
 xtest = x[df_long["date"] >= splitDate]
