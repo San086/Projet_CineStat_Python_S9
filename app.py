@@ -31,7 +31,7 @@ df
 
 
 # --- Titre ---
-st.header("Prévision du nombre d’entrées cinéma", divider=True)
+st.header("🎬 Prévision du nombre d’entrées cinéma", divider=True)
 
 # --- Chargement du fichier Excel ---
 fichier = 'Mise_en_forme_Frequentation_Salles_Cine.xlsx'
@@ -292,3 +292,8 @@ st.info(
     "en orange : moyenne affluence, "
     "en bleu : faible affluence."
 )
+
+
+st.header("Surprises", divider=True)
+st.link_button("Clique pour une surprise", "https://www.youtube.com/watch?v=xvFZjo5PgG0")
+st.link_button("Clique pour une surprise v2", "https://chat-jai-pete.fr/")
