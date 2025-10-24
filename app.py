@@ -6,6 +6,9 @@ import altair as alt
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
+from matplotlib.patches import Patch
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
 
 
 st.title('Projet :clapper: :red[CineStat] :clapper:')
@@ -198,4 +201,93 @@ st.write(
     f"Le modèle Random Forest prédit l’évolution du nombre d’entrées cinéma jusqu’à **{futur[-1].year}**. "
     "Les valeurs réelles (en bleu) et les projections (en vert) permettent d’anticiper les tendances "
     "saisonnières et les périodes de forte affluence."
+)
+
+
+
+
+# --- Titre ---
+st.title("🎬 Analyse KNN — Classification des mois selon leur affluence moyenne")
+
+# --- Lecture du fichier Excel ---
+fichier = "Mise_en_forme_Frequentation_Salles_Cine.xlsx"
+df = pd.read_excel(fichier, sheet_name="Entrees_mois")
+
+# --- Liste des mois ---
+mois = [
+    "janvier", "février", "mars", "avril", "mai", "juin",
+    "juillet", "août", "septembre", "octobre", "novembre", "décembre"
+]
+
+# --- Calcul des moyennes mensuelles ---
+moyennes_mois = df[mois].mean()
+
+# --- Calcul des quantiles ---
+q1 = moyennes_mois.quantile(0.33)
+q2 = moyennes_mois.quantile(0.66)
+
+# --- Attribution des catégories ---
+labels = []
+for val in moyennes_mois:
+    if val <= q1:
+        labels.append("faible affluence")
+    elif val <= q2:
+        labels.append("moyenne affluence")
+    else:
+        labels.append("forte affluence")
+
+# --- Préparation des données ---
+X = moyennes_mois.values.reshape(-1, 1)
+y = labels
+
+# --- Modèle KNN ---
+classifier = KNeighborsClassifier(n_neighbors=1)
+classifier.fit(X, y)
+y_pred = classifier.predict(X)
+
+# --- Évaluation du modèle ---
+conf_matrix = confusion_matrix(y, y_pred)
+class_report = classification_report(y, y_pred, output_dict=True)
+accuracy = accuracy_score(y, y_pred)
+
+# --- Affichage des métriques ---
+st.subheader("📊 Évaluation du modèle KNN")
+st.write(f"**Exactitude du modèle :** {accuracy:.2f}")
+st.write("**Matrice de confusion :**")
+st.dataframe(pd.DataFrame(conf_matrix, index=set(y), columns=set(y)))
+st.write("**Rapport de classification :**")
+st.dataframe(pd.DataFrame(class_report).transpose())
+
+# --- Couleurs selon catégorie ---
+palette = {"faible affluence": "lightblue", "moyenne affluence": "orange", "forte affluence": "red"}
+
+# --- Graphique ---
+fig, ax = plt.subplots(figsize=(12, 5))
+sns.barplot(x=moyennes_mois.index, y=moyennes_mois.values, palette=[palette[c] for c in y_pred], ax=ax)
+ax.set_title("Classification des mois selon leur affluence moyenne (KNN)")
+ax.set_ylabel("Entrées moyennes")
+ax.set_xlabel("Mois")
+plt.xticks(rotation=45)
+
+# --- Légende dynamique ---
+legend_elements = [
+    Patch(facecolor="lightblue", label=f"Faible affluence ≤ {int(q1):,} entrées"),
+    Patch(facecolor="orange", label=f"Moyenne affluence {int(q1)+1:,} – {int(q2):,} entrées"),
+    Patch(facecolor="red", label=f"Forte affluence > {int(q2):,} entrées"),
+]
+ax.legend(handles=legend_elements, title="Catégorie d'affluence")
+
+st.pyplot(fig)
+
+# --- Interprétation ---
+st.subheader("🧩 Interprétation")
+st.write(
+    "Cette classification utilise un algorithme **K-Nearest Neighbors (KNN)** "
+    "pour identifier les mois de **forte**, **moyenne** ou **faible affluence** "
+    "en fonction du nombre moyen d’entrées au cinéma."
+)
+st.info(
+    "👉 En rouge : forte affluence (été et fêtes), "
+    "en orange : moyenne affluence, "
+    "en bleu : faible affluence."
 )
