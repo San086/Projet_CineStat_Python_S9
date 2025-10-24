@@ -77,7 +77,6 @@ x = df_long[col]
 y = df_long["entrees"]
 
 # --- Séparation train/test ---
-print(df_long["date"].type())
 splitDate = st.date_input(
     "Entrer une date à partir de laquelle vérifier le modèle :",
     value = pd.to_datetime("2017-01-01")
