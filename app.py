@@ -58,6 +58,9 @@ df_long = df_long.sort_values("date").reset_index(drop=True)
 df_long["trimestre"] = df_long["date"].dt.quarter
 df_long["vacances"] = df_long["numéro mois"].isin([7, 8, 12]).astype(int)
 
+st.header("Tableau de données restructurées", divider=True)
+df_long.insert(0, range(1, 1 + len(df_long)))
+
 # --- Création de features de décalage ---
 s1, s2, m = 3, 6, 12
 df_long["lag1"] = df_long["entrees"].shift(s1)
