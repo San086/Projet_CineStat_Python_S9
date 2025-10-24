@@ -12,6 +12,39 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
 
 
+
+# --- MENU LATÉRAL ---
+st.sidebar.title("🎬 Navigation")
+menu = st.sidebar.radio(
+    "Aller à :",
+    ["Accueil", "Prévisions Random Forest", "Projection 2030", "Classification KNN"]
+)
+
+# --- PAGES ---
+if menu == "Accueil":
+    st.title("🎥 CineStat - Tableau de bord")
+    st.write("Bienvenue dans l'application de prévision des entrées cinéma !")
+
+elif menu == "Prévisions Random Forest":
+    st.title("📈 Modèle Random Forest")
+    st.write("Affichage des prévisions du modèle Random Forest...")
+    # 👉 ici ton code de modèle RandomForest + graphique
+    st.success("Section Random Forest chargée ✅")
+
+elif menu == "Projection 2030":
+    st.title("🗓️ Prévisions futures (2030)")
+    st.write("Projection du nombre d’entrées jusqu’en 2030...")
+    # 👉 ton code de projection future
+
+elif menu == "Classification KNN":
+    st.title("🔎 Classification KNN")
+    st.write("Analyse des mois par catégorie d’affluence...")
+    # 👉 ton code KNN ici
+
+
+
+
+
 st.title('Projet :clapper: :red[CineStat] :clapper:')
 st.text("Lise AYMONIN\nAndreas JULIEN-CARAGUEL\n")
 st.header("Problématique", divider="gray")
