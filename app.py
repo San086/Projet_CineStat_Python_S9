@@ -99,14 +99,14 @@ if mae > 2000000: st.write("Erreur supérieure à 2 millions d'entrées : erreur
 else: st.write("Erreur inférieur à 2 millions d'entrées : c'est acceptable.")
 
 # --- Graphique matplotlib ---
-fig, ax = plt.subplots(figsize=(12, 6))
-ax.plot(df_long["date"], df_long["entrees"], label="Valeurs réelles", color="blue")
-ax.plot(datesTest, ypred, label="Prédictions", color="orange", linewidth=2)
-ax.set_title(f"Prévision du nombre d’entrées cinéma depuis {splitDate[0:4]} (modèle Random Forest)")
+fig, ax = plt.subplots(figsize=(10, 5))
+ax.plot(datesTest, ytest, label="Valeurs réelles", color="blue", marker='o')
+ax.plot(datesTest, ypred, label="Prédictions", color="orange", marker='x', linewidth=2)
+ax.set_title(f"Prédiction de la fréquentation des cinémas depuis {splitDate[0:4]}")
 ax.set_xlabel("Année")
 ax.set_ylabel("Nombre d'entrées en millions")
 ax.legend()
-ax.grid(True)
+ax.grid(True, linestyle="--", alpha=0.5)
 plt.tight_layout()
 
 # --- Affichage dans Streamlit ---
