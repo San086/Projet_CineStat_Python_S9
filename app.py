@@ -95,14 +95,14 @@ mae = mean_absolute_error(ytest, ypred)
 # --- Affichage des métriques ---
 st.subheader("📊 Évaluation du modèle Random Forest")
 st.write(f"**MAE :** {mae:,.0f} entrées")
-if mae > 2000000: st.write("Erreur supérieure à 2 millions d'entrées : erreur élevée.")
+if mae > 2000000: st.write("Erreur supérieure à 2 millions d'entrées : erreur élevée !!")
 else: st.write("Erreur inférieur à 2 millions d'entrées : c'est acceptable.")
 
 # --- Graphique matplotlib ---
 fig, ax = plt.subplots(figsize=(12, 6))
 ax.plot(df_long["date"], df_long["entrees"], label="Valeurs réelles", color="blue")
 ax.plot(datesTest, ypred, label="Prédictions", color="orange", linewidth=2)
-ax.set_title(f"Prévision du nombre d’entrées cinéma depuis {splitDate[0:3]} (modèle Random Forest)")
+ax.set_title(f"Prévision du nombre d’entrées cinéma depuis {splitDate[0:4]} (modèle Random Forest)")
 ax.set_xlabel("Année")
 ax.set_ylabel("Nombre d'entrées en millions")
 ax.legend()
@@ -114,9 +114,9 @@ st.pyplot(fig)
 
 # --- Commentaire ---
 st.write(
-    "Ce graphique illustre les valeurs observées et les prévisions du nombre d’entrées "
-    "dans les salles de cinéma françaises, basées sur un modèle de **Random Forest**. "
-    "Les pics observés correspondent aux périodes estivales et de fêtes de fin d’année."
+    "Ce graphique compare les prévisions et les valeurs réelles du le nombre d’entrées"
+    "dans les salles de cinéma françaises, basé sur un modèle de **Random Forest**. "
+    "On va voir que les pics récurent correspondent aux périodes estivales et de fêtes de fin d’année."
 )
 
 
@@ -124,38 +124,7 @@ st.write(
 
 
 # --- Titre ---
-st.header("🎬 Projection du nombre d’entrées cinéma jusqu’en 2030", divider=True)
-
-# --- Chargement du fichier Excel ---
-fichier = 'Mise_en_forme_Frequentation_Salles_Cine.xlsx'
-data = pd.read_excel(fichier, sheet_name='Entrees_mois')
-
-# --- Restructuration du jeu de données ---
-df_long = data.melt(
-    id_vars=["Années"],
-    value_vars=data.columns[2:13],
-    var_name="mois", value_name="entrees"
-)
-
-# --- Mois en chiffres ---
-mois_map = {
-    "janvier": 1, "février": 2, "mars": 3, "avril": 4, "mai": 5, "juin": 6,
-    "juillet": 7, "août": 8, "septembre": 9, "octobre": 10, "novembre": 11, "décembre": 12
-}
-df_long["numéro mois"] = df_long["mois"].map(mois_map)
-
-# --- Création de la colonne date ---
-df_long["date"] = pd.to_datetime(dict(year=df_long["Années"], month=df_long["numéro mois"], day=1))
-df_long = df_long.sort_values("date").reset_index(drop=True)
-df_long["trimestre"] = df_long["date"].dt.quarter
-df_long["vacances"] = df_long["numéro mois"].isin([7, 8, 12]).astype(int)
-
-# --- Définition des lags ---
-s1, s2, m = 3, 6, 12
-df_long["lag1"] = df_long["entrees"].shift(s1)
-df_long["lag2"] = df_long["entrees"].shift(s2)
-df_long["mean3"] = df_long["entrees"].rolling(m).mean()
-df_long = df_long.dropna().reset_index(drop=True)
+st.header("🎬 Projection du nombre d’entrées cinéma à l'avenir", divider=True)
 
 # --- Modèle Random Forest ---
 col = ['Années', 'numéro mois', 'vacances', 'lag1', 'lag2', 'mean3', 'trimestre']
@@ -166,7 +135,8 @@ model = RandomForestRegressor(random_state=42, n_estimators=300)
 model.fit(x, y)
 
 # --- Création du futur (2025 → 2030) ---
-futur = pd.date_range(start=df_long["date"].max() + pd.offsets.MonthBegin(1), end="2030-12-01", freq="MS")
+endDate = "2030-12-01
+futur = pd.date_range(start=df_long["date"].max() + pd.offsets.MonthBegin(1), endDate, freq="MS")
 dfutur = pd.DataFrame({"date": futur})
 dfutur["Années"] = dfutur["date"].dt.year
 dfutur["numéro mois"] = dfutur["date"].dt.month
@@ -190,7 +160,7 @@ fut_pred = dfull.loc[len(df_long):, ["date", "entrees"]]
 # --- Graphique ---
 fig, ax = plt.subplots(figsize=(12, 6))
 ax.plot(df_long["date"], df_long["entrees"], label="Valeurs réelles", color="blue")
-ax.plot(fut_pred["date"], fut_pred["entrees"], label="Prévisions futures (2025–2030)", color="green", linewidth=2)
+ax.plot(fut_pred["date"], fut_pred["entrees"], label=f"Prévisions futures (2025–{endDate[0:4]})", color="green", linewidth=2)
 ax.set_title(f"Prévision du nombre d’entrées cinéma jusqu’en {futur[-1].year}")
 ax.set_xlabel("Date")
 ax.set_ylabel("Nombre d’entrées (en millions)")
