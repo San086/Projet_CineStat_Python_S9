@@ -13,44 +13,6 @@ from sklearn.metrics import confusion_matrix, classification_report, accuracy_sc
 
 
 
-# --- Titre principal ---
-st.title("🎬 CineStat - Tableau de bord")
-
-# --- Menu interne ---
-st.markdown("""
-### 🧭 Menu de navigation
-- [🏠 Accueil](#accueil)
-- [📈 Prévisions Random Forest](#previsions-random-forest)
-- [🗓️ Projection 2030](#projection-2030)
-- [🔎 Classification KNN](#classification-knn)
-""", unsafe_allow_html=True)
-
-# --- Section Accueil ---
-st.markdown("## 🏠 Accueil", unsafe_allow_html=True)
-st.write("Bienvenue sur CineStat — outil d’analyse et de prévision des entrées cinéma en France.")
-
-# --- Section Prévisions Random Forest ---
-st.markdown("---")
-st.markdown("## 📈 Prévisions Random Forest", unsafe_allow_html=True)
-st.write("Affichage des résultats du modèle Random Forest ici...")
-# 👉 ton code de graphique ou modèle Random Forest
-
-# --- Section Projection 2030 ---
-st.markdown("---")
-st.markdown("## 🗓️ Projection 2030", unsafe_allow_html=True)
-st.write("Projection des entrées jusqu’en 2030...")
-# 👉 ton code de projection future ici
-
-# --- Section Classification KNN ---
-st.markdown("---")
-st.markdown("## 🔎 Classification KNN", unsafe_allow_html=True)
-st.write("Analyse des mois selon le niveau d’affluence (KNN)...")
-# 👉 ton code KNN ici
-
-
-
-
-
 st.title('Projet :clapper: :red[CineStat] :clapper:')
 st.text("Lise AYMONIN\nAndreas JULIEN-CARAGUEL\n")
 st.header("Problématique", divider="gray")
