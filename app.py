@@ -4,6 +4,7 @@ import numpy as np
 import math
 import altair as alt
 import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
 from matplotlib.patches import Patch
