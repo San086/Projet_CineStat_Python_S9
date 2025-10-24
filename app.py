@@ -254,7 +254,7 @@ accuracy = accuracy_score(y, y_pred)
 st.subheader("📊 Évaluation du modèle KNN")
 st.write(f"**Exactitude du modèle :** {accuracy:.2f}")
 st.write("**Matrice de confusion :**")
-st.dataframe(pd.DataFrame(conf_matrix, index=set(y), columns=set(y)))
+st.dataframe(pd.DataFrame(conf_matrix, index=sorted(set(y)), columns=sorted(set(y))))
 st.write("**Rapport de classification :**")
 st.dataframe(pd.DataFrame(class_report).transpose())
 
